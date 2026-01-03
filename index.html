@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablas de Multiplicar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .tabla {
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 300px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            text-align: center;
+            padding: 8px;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tablas de Multiplicar</h1>
+    <div id="tablas"></div>
+
+    <script>
+        const tablasContainer = document.getElementById('tablas');
+
+        for (let i = 1; i <= 10; i++) {
+            const tablaDiv = document.createElement('div');
+            tablaDiv.classList.add('tabla');
+
+            const titulo = document.createElement('h2');
+            titulo.textContent = `Tabla del ${i}`;
+            tablaDiv.appendChild(titulo);
+
+            const tabla = document.createElement('table');
+            for (let j = 1; j <= 10; j++) {
+                const fila = document.createElement('tr');
+                const celdaOperacion = document.createElement('td');
+                const celdaResultado = document.createElement('td');
+
+                celdaOperacion.textContent = `${i} x ${j}`;
+                celdaResultado.textContent = i * j;
+
+                fila.appendChild(celdaOperacion);
+                fila.appendChild(celdaResultado);
+                tabla.appendChild(fila);
+            }
+
+            tablaDiv.appendChild(tabla);
+            tablasContainer.appendChild(tablaDiv);
+        }
+    </script>
+</body>
+</html>
