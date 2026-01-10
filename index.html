@@ -1,67 +1,150 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tablas de Multiplicar básicas</title>
+    <title>Tablas de Multiplicar</title>
+
     <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0;
+            min-height: 100vh;
+            background: radial-gradient(circle, #1a1a1a, #0b0b0b);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #e0e0e0;
         }
-        .tabla {
+
+        .calculator {
+            background: #121212;
+            border-radius: 16px;
+            width: 420px;
+            padding: 20px;
+            box-shadow: 
+                inset 0 0 10px rgba(255,255,255,0.05),
+                0 20px 40px rgba(0,0,0,0.8);
+        }
+
+        .screen {
+            background: linear-gradient(180deg, #1f2a24, #0f1412);
+            color: #7CFFB2;
+            border-radius: 10px;
+            padding: 15px;
             margin-bottom: 20px;
+            box-shadow: inset 0 0 12px rgba(0,0,0,0.8);
         }
-        h2 {
-            color: #333;
-        }
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            max-width: 300px;
-        }
-        th, td {
-            border: 1px solid #ddd;
+
+        .screen h1 {
+            margin: 0;
+            font-size: 18px;
+            letter-spacing: 2px;
             text-align: center;
-            padding: 8px;
         }
-        th {
-            background-color: #f4f4f4;
+
+        .tablas {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            max-height: 360px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .tabla {
+            background: #1c1c1c;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: inset 0 0 6px rgba(0,0,0,0.7);
+        }
+
+        .tabla h2 {
+            text-align: center;
+            margin: 0 0 8px;
+            font-size: 14px;
+            color: #f2c94c;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        td {
+            padding: 4px;
+            text-align: center;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        td:first-child {
+            color: #b0b0b0;
+        }
+
+        td:last-child {
+            color: #7CFFB2;
+            font-weight: bold;
+        }
+
+        /* Scroll elegante */
+        .tablas::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .tablas::-webkit-scrollbar-thumb {
+            background: #444;
+            border-radius: 3px;
         }
     </style>
 </head>
 <body>
-    <h1>Tablas de Multiplicar</h1>
-    <div id="tablas"></div>
 
-    <script>
-        const tablasContainer = document.getElementById('tablas');
+<div class="calculator">
 
-        for (let i = 1; i <= 10; i++) {
-            const tablaDiv = document.createElement('div');
-            tablaDiv.classList.add('tabla');
+    <div class="screen">
+        <h1>CALCULADORA · TABLAS</h1>
+    </div>
 
-            const titulo = document.createElement('h2');
-            titulo.textContent = `Tabla del ${i}`;
-            tablaDiv.appendChild(titulo);
+    <div class="tablas" id="tablas"></div>
 
-            const tabla = document.createElement('table');
-            for (let j = 1; j <= 10; j++) {
-                const fila = document.createElement('tr');
-                const celdaOperacion = document.createElement('td');
-                const celdaResultado = document.createElement('td');
+</div>
 
-                celdaOperacion.textContent = `${i} x ${j}`;
-                celdaResultado.textContent = i * j;
+<script>
+    const tablasContainer = document.getElementById('tablas');
 
-                fila.appendChild(celdaOperacion);
-                fila.appendChild(celdaResultado);
-                tabla.appendChild(fila);
-            }
+    for (let i = 1; i <= 10; i++) {
+        const tablaDiv = document.createElement('div');
+        tablaDiv.classList.add('tabla');
 
-            tablaDiv.appendChild(tabla);
-            tablasContainer.appendChild(tablaDiv);
+        const titulo = document.createElement('h2');
+        titulo.textContent = `Tabla del ${i}`;
+        tablaDiv.appendChild(titulo);
+
+        const tabla = document.createElement('table');
+
+        for (let j = 1; j <= 10; j++) {
+            const fila = document.createElement('tr');
+
+            const operacion = document.createElement('td');
+            operacion.textContent = `${i} × ${j}`;
+
+            const resultado = document.createElement('td');
+            resultado.textContent = i * j;
+
+            fila.appendChild(operacion);
+            fila.appendChild(resultado);
+            tabla.appendChild(fila);
         }
-    </script>
+
+        tablaDiv.appendChild(tabla);
+        tablasContainer.appendChild(tablaDiv);
+    }
+</script>
+
 </body>
 </html>
